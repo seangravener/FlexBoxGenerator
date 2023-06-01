@@ -1,0 +1,7 @@
+<div #canvas class="canvas-container bordered" [style.display]="canvasDisplayMode">
+  <div *ngFor="let box of boxes" class="box bordered" [style.background]="box.color">
+    <div class="content">
+      <div class="content--title">{{ box.title }}</div>
+    </div>
+  </div>
+</div>

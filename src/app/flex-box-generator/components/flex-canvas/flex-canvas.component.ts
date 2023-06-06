@@ -7,11 +7,11 @@ export interface Box {
 
 @Component({
   selector: 'app-canvas',
-  templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss'],
+  templateUrl: './flex-canvas.component.html',
+  styleUrls: ['./flex-canvas.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CanvasComponent {
+export class FlexCanvasComponent {
   canvasDisplayMode = 'flex';
   boxes: Box[] = [
     { title: 'Box 1', color: 'red' },

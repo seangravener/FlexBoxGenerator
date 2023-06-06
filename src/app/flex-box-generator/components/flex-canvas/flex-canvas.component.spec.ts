@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemsOptionsComponent } from './children-options.component';
+import { FlexCanvasComponent } from './flex-canvas.component';
 
-describe('ItemsOptionsComponent', () => {
-  let component: ItemsOptionsComponent;
-  let fixture: ComponentFixture<ItemsOptionsComponent>;
+describe('CanvasComponent', () => {
+  let component: FlexCanvasComponent;
+  let fixture: ComponentFixture<FlexCanvasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemsOptionsComponent ]
+      declarations: [ FlexCanvasComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ItemsOptionsComponent);
+    fixture = TestBed.createComponent(FlexCanvasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

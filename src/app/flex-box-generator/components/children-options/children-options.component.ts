@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-items-options',
-  templateUrl: './items-options.component.html',
-  styleUrls: ['./items-options.component.scss'],
+  templateUrl: './children-options.component.html',
+  styleUrls: ['./children-options.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemsOptionsComponent {

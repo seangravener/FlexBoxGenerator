@@ -16,8 +16,9 @@ export class CanvasComponent {
   boxes: Box[] = [
     { title: 'Box 1', color: 'red' },
     { title: 'Box 2', color: 'red' },
-    { title: 'Box 3', color: 'red' },
+    { title: 'Box 4', color: 'red' },
+    { title: 'Box 5', color: 'red' },
+    { title: 'Box 6', color: 'blue' },
   ];
-
 
 }

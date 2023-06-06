@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexBoxGeneratorComponent } from './generator.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { ContainerOptionsComponent } from './components/canvas/container-options/container-options.component';
-import { ItemsOptionsComponent } from './components/items-options/items-options.component';
+import { ItemsOptionsComponent } from './components/children-options/children-options.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +13,7 @@ import { ItemsOptionsComponent } from './components/items-options/items-options.
     ItemsOptionsComponent,
   ],
   imports: [CommonModule],
-  providers: []
+  exports: [FlexBoxGeneratorComponent],
+  providers: [],
 })
 export class FlexBoxGeneratorModule {}

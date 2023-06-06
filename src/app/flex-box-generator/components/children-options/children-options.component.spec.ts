@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemsOptionsComponent } from './items-options.component';
+import { ItemsOptionsComponent } from './children-options.component';
 
 describe('ItemsOptionsComponent', () => {
   let component: ItemsOptionsComponent;

@@ -13,7 +13,6 @@ import { ItemsActionsComponent } from './components/flex-items/items-actions/ite
     FlexCanvasComponent,
     FlexContainerComponent,
     FlexItemsComponent,
-    // FlexItemsActionsComponent,
     ItemsActionsComponent,
   ],
   imports: [CommonModule, CoreModule],

@@ -1,22 +1,13 @@
 <h3>Flex Item Options</h3>
 
-<div class="item-option--actions">
-  <button class="btn btn-outline-primary" (click)="onAddItem()">
-    <i class="fa fa-pencil"></i>
-    Add +
-  </button>
-  <button class="btn btn-outline-danger" (click)="onDeleteItem()">
-    <i class="fa fa-trash"></i>
-    Remove -
-  </button>
-</div>
+<items-actions></items-actions>
 
-<ng-container *ngFor="let item of flexItems$ | async">
+<ng-container *ngFor="let item of flexItems$ | async else showLoading">
   <div class="item-option">
     {{ item.content }}
   </div>
 </ng-container>
 
-<!-- <div #showLoading>
+<div #showLoading>
   Loading ...
-</div> -->
+</div>

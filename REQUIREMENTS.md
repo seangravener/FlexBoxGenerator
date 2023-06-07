@@ -3,15 +3,15 @@
 ### Canvas
 Contains demonstration area.
 
-- Add boxes to and remove boxes form canvas
-- Show box id in each box
+- [ ] Add\Remove flex items to\from canvas
+- [ ] Display id in each flex item
 - 
 
-### Container Options
+### Flex Container Options
 Set properties for `flex` container
 
-### Children Options
-Set properties or nested `flex` items
+### Flex Item Options
+Set properties for nested `flex` items
 
 ```js
 { 
@@ -21,6 +21,6 @@ Set properties or nested `flex` items
 ```
 
 ## Considerations
-- OOP Angular
-- State stored is a single object tree. 
+- OOP/FP Angular
+- FP State stored is a single object tree. 
 - Update superficial, stateless UI components with OnPush

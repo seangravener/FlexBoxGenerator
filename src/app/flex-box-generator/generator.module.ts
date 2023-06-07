@@ -2,17 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexBoxGeneratorComponent } from './generator.component';
 import { FlexCanvasComponent } from './components/flex-canvas/flex-canvas.component';
-import { FlexContainerOptionsComponent } from './components/flex-container-options/flex-container-options.component';
-import { FlexItemsOptionsComponent } from './components/flex-items-options/flex-items-options.component';
+import { FlexContainerComponent } from './components/flex-container/flex-container.component';
+import { FlexItemsComponent } from './components/flex-items/flex-items.component';
+import { CoreModule } from './core/core.module';
+import { ItemsActionsComponent } from './components/flex-items/items-actions/items-actions.component';
 
 @NgModule({
   declarations: [
     FlexBoxGeneratorComponent,
     FlexCanvasComponent,
-    FlexContainerOptionsComponent,
-    FlexItemsOptionsComponent,
+    FlexContainerComponent,
+    FlexItemsComponent,
+    // FlexItemsActionsComponent,
+    ItemsActionsComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, CoreModule],
   exports: [FlexBoxGeneratorComponent],
   providers: [],
 })

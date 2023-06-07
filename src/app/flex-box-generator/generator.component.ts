@@ -1,23 +1,27 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { FlexItem } from './components/flex-items/flex-item.model';
 
 @Component({
   selector: 'app-flex-box-generator',
-  template: `
-    <div class="container-fluid">
-      <div class="row">
-
-        <aside class="col-3">
-          <app-flex-container-options></app-flex-container-options>
-        </aside>
-        <main class="col-6" style="flex-grow: 1;">
-          <app-canvas></app-canvas>
-        </main>
-        <aside class="col-3">
-          item options
-        </aside>
-      </div>
-    </div>
-  `,
+  templateUrl: `./generator.component.html`,
   styles: [''],
 })
-export class FlexBoxGeneratorComponent {}
+export class FlexBoxGeneratorComponent {
+  private flexItemsSubject = new BehaviorSubject<FlexItem[]>([]);
+  flexItems$: Observable<FlexItem[]> = this.flexItemsSubject.asObservable();
+
+  constructor() {
+    this.flexItemsSubject.next([
+      { content: 'Item 1', style: { backgroundColor: 'red' } },
+      { content: 'Item 2', style: { backgroundColor: 'red' } },
+      { content: 'Item 3', style: { backgroundColor: 'red' } },
+      { content: 'Item 4', style: { backgroundColor: 'blue' } },
+      { content: 'Item 5', style: { backgroundColor: 'blue' } },
+    ] as FlexItem[]);
+  }
+
+  onNextItems(items: FlexItem[]) {
+    this.flexItemsSubject.next(items);
+  }
+}

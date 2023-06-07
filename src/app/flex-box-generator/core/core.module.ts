@@ -1,11 +1,17 @@
-import { NgModule } from '@angular/core';
-import { StateService } from './services/state.service';
-import { StoreService } from './services/store.service';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 @NgModule({
   imports: [],
   exports: [],
   declarations: [],
-  providers: [StateService, StoreService],
+  providers: [],
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'CoreModule is already loaded. It should only be imported in AppModule.'
+      );
+    }
+  }
+}

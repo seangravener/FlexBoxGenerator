@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-``
+
 import { FlexItemsComponent } from './flex-items.component';
 
 describe('CanvasComponent', () => {

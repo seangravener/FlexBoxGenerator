@@ -4,7 +4,7 @@ import {
   FlexDisplay,
   FlexJustifyContent,
   FlexWrap,
-} from '../../core/interfaces/flex-styles.interface';
+} from '../../shared/interfaces/flex-styles.interface';
 
 export interface FlexContainerProps {
   alignItems?: FlexAlignContent;

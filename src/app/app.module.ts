@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexBoxGeneratorModule } from './flex-box-generator/generator.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from './flex-box-generator/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FlexBoxGeneratorModule,
     AppRoutingModule,
-    NgbModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

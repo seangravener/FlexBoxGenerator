@@ -1,11 +1,13 @@
-<h3>Flex Item Options</h3>
+<ng-container *ngIf="flexItems$ | async as flexItems else showLoading">
+  <h3>Flex Item Options</h3>
 
-<items-actions></items-actions>
+  <items-actions></items-actions>
 
-<ng-container *ngFor="let item of flexItems$ | async else showLoading">
-  <div class="item-option">
-    {{ item.content }}
-  </div>
+  <ng-container *ngFor="let item of flexItems">
+    <div class="item-option">
+      {{ item.content }}
+    </div>
+  </ng-container>
 </ng-container>
 
 <ng-template #showLoading>

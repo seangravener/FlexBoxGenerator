@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Store } from './store.provider';
+import { FlexItemsService } from './flex-items.service';
 
-describe('StoreService', () => {
-  let service: Store;
+describe('FlexItemsService', () => {
+  let service: FlexItemsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Store);
+    service = TestBed.inject(FlexItemsService);
   });
 
   it('should be created', () => {

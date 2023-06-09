@@ -1,13 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { FlexItem } from "./flex-item.model";
+import { FlexItemsService } from './flex-items.service';
 
 @Component({
   selector: 'flex-items',
@@ -16,30 +9,19 @@ import { FlexItem } from "./flex-item.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlexItemsComponent {
-  private _flexItems = new BehaviorSubject<FlexItem[]>([]);
-  flexItems$: Observable<FlexItem[]> = this._flexItems.asObservable();
+  flexItems$ = this.flexItemsService.flexItems$;
 
-  @Input()
-  set flexItems(value: FlexItem[]) {
-    this._flexItems.next(value);
-  }
-
-  @Output() next: EventEmitter<FlexItem[]> = new EventEmitter();
-  @Output() reset: EventEmitter<[]> = new EventEmitter();
+  constructor(private flexItemsService: FlexItemsService) {}
 
   onAddItem() {
-    this.nextItems([...this._flexItems.value, new FlexItem()]);
+    this.flexItemsService.addItem();
   }
 
   onDeleteItem() {
-    this.nextItems([...this._flexItems.value.slice(0, -1)]);
-  }
-
-  nextItems(items: FlexItem[]) {
-    this.next.emit(items);
+    this.flexItemsService.deleteItem();
   }
 
   resetItems() {
-    this.reset.emit([]);
+    this.flexItemsService.resetItems();
   }
 }

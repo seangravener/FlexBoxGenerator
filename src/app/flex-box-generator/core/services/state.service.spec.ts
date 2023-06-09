@@ -13,4 +13,10 @@ describe('StateService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should fetch state', () => {
+    service.fetchState('flexItems').subscribe((items) => {
+      expect(items).toEqual([]);
+    });
+  });
 });

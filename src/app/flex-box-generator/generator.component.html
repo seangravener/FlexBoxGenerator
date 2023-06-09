@@ -1,14 +1,13 @@
-<div class="container-fluid">
+<div *ngIf="flexItems$ | async as flexItems" class="container-fluid">
   <div class="row">
     <aside class="col-3">
-      <flex-container></flex-container>
+      <flex-container *ngIf="flexItems"></flex-container>
     </aside>
     <main class="col-6">
-      <flex-canvas [flexItems$]="flexItems$"></flex-canvas>
+      <flex-canvas></flex-canvas>
     </main>
     <aside class="col-3">
-      <flex-items *ngIf="flexItems$ | async as flexItems" [flexItems]="flexItems"
-        (next)="onNextItems($event)"></flex-items>
+      <flex-items *ngIf="flexItems"></flex-items>
     </aside>
   </div>
 </div>

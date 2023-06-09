@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
-import { FlexItem } from '../flex-items/flex-item.model';
+import { FlexItemsService } from '../flex-items/flex-items.service';
 
 @Component({
   selector: 'flex-canvas',
@@ -10,5 +9,7 @@ import { FlexItem } from '../flex-items/flex-item.model';
 })
 export class FlexCanvasComponent {
   canvasDisplayMode = 'flex';
-  @Input() flexItems$: Observable<FlexItem[]> = of([]);
+  flexItems$ = this.flexItemsService.flexItems$;
+
+  constructor(private flexItemsService: FlexItemsService) {}
 }

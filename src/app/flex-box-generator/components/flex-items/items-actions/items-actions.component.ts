@@ -1,18 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FlexItemsService } from '../flex-items.service';
 
 @Component({
   selector: 'items-actions',
   templateUrl: './items-actions.component.html',
   styleUrls: ['./items-actions.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsActionsComponent {
+  constructor(private flexItemsService: FlexItemsService) {}
 
   onAddItem() {
-    console.log('Add item');
+    this.flexItemsService.addItem();
   }
 
   onDeleteItem() {
-    console.log('Delete item');
+    this.flexItemsService.deleteItem();
+  }
+
+  onResetItems() {
+    this.flexItemsService.resetItems();
   }
 }

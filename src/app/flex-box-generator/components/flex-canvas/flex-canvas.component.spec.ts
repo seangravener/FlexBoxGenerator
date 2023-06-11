@@ -9,22 +9,15 @@ import { Observable, of } from 'rxjs';
 import { Slice } from '../../core/services/store.provider';
 import { FlexItemsService } from '../flex-items/flex-items.service';
 import { FlexItem } from '../flex-items/flex-item.model';
+import { FLEX_ITEMS } from '../../core/fixtures/flex-items';
 
 let mockFlexItemsService = class implements Partial<FlexItemsService> {
   get flexItems$(): Observable<any> | undefined {
-    return of({
-      flexItems: [
-        { content: 'Item 1', style: { backgroundColor: 'red' } },
-        { content: 'Item 2', style: { backgroundColor: 'red' } },
-        { content: 'Item 3', style: { backgroundColor: 'red' } },
-        { content: 'Item 4', style: { backgroundColor: 'blue' } },
-        { content: 'Item 5', style: { backgroundColor: 'blue' } },
-      ],
-    } as Slice<FlexItem[]>);
+    return of(FLEX_ITEMS as Slice<FlexItem[]>);
   }
 };
 
-fdescribe('CanvasComponent', () => {
+describe('CanvasComponent', () => {
   let component: FlexCanvasComponent;
   let fixture: ComponentFixture<FlexCanvasComponent>;
 

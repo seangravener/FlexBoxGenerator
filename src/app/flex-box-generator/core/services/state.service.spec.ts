@@ -1,23 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { StateService } from './state.service';
-import { Slice, Store } from './store.provider';
-import { Observable, of } from 'rxjs';
-import { FLEX_ITEMS } from '../fixtures/flex-items';
+import { Store } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
-
-let mockStore = class implements Partial<Store> {
-  value: FlexItem[] = FLEX_ITEMS.flexItems;
-  select(): Observable<any> {
-    return of(FLEX_ITEMS.flexItems as FlexItem[]);
-  }
-  set() {
-    return of(FLEX_ITEMS.flexItems as FlexItem[]);
-  }
-  get() {
-    return of(FLEX_ITEMS as Slice<FlexItem[]>);
-  }
-};
+import { FLEX_ITEMS } from '../fixtures/flex-items';
 
 const newFlexItem = new FlexItem({
   content: 'Item 1',

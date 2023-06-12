@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
 
-import { Slice, Store } from './store.provider';
+import { Slice, StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
 
 export type FlexItems = FlexItem[];
@@ -22,7 +22,7 @@ export class StateService {
     return this.store.value;
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: StoreProvider) {}
 
   fetchState<T extends Slice<T>>(slice: string): Observable<T> {
     // return this.http

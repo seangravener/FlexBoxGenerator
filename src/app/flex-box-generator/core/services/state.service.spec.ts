@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { StateService } from './state.service';
-import { Store } from './store.provider';
+import { StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
 import { FLEX_ITEMS } from '../fixtures/flex-items';
 
@@ -13,12 +13,12 @@ const newFlexItem = new FlexItem({
 
 fdescribe('StateService', () => {
   let stateService: StateService;
-  let storeProvider: Store;
+  let storeProvider: StoreProvider;
 
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [StateService] });
 
-    storeProvider = new Store();
+    storeProvider = new StoreProvider();
     stateService = new StateService(storeProvider);
     spyOn(storeProvider, 'select').and.returnValue(of(FLEX_ITEMS.flexItems));
     spyOn(storeProvider, 'set');

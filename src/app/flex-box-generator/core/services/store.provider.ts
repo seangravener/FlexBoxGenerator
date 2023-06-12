@@ -6,7 +6,7 @@ export interface Slice<T> {
 }
 
 @Injectable()
-export class Store {
+export class StoreProvider {
   private stateSubject = new BehaviorSubject<Slice<any>>({});
   private store$ = this.stateSubject
     .asObservable()

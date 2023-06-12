@@ -1,12 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { StateService } from './services/state.service';
-import { Store } from './services/store.provider';
+import { StoreProvider } from './services/store.provider';
 
 @NgModule({
   imports: [],
   exports: [],
   declarations: [],
-  providers: [StateService, Store],
+  providers: [StateService, StoreProvider],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

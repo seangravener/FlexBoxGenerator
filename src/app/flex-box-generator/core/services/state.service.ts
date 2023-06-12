@@ -18,6 +18,10 @@ const api: Slice<FlexItems> = {
 
 @Injectable({ providedIn: 'root' })
 export class StateService {
+  get value(): Slice<any> {
+    return this.store.value;
+  }
+
   constructor(private store: Store) {}
 
   fetchState<T extends Slice<T>>(slice: string): Observable<T> {
@@ -36,9 +40,5 @@ export class StateService {
 
   set<T extends Slice<T>>(slice: string, state: T): void {
     this.store.set<T>(slice, state);
-  }
-
-  value<T extends Slice<T>>(slice: string): T {
-    return this.store.value[slice] as T;
   }
 }

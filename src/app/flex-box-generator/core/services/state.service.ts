@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 
 import { Slice, StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
@@ -34,8 +34,14 @@ export class StateService {
     );
   }
 
-  get<T extends Slice<T>>(slice: string): Observable<T> {
+  get<T extends Slice<T | T[]>>(slice: string): Observable<T> {
     return this.store.select<T>(slice);
+  }
+
+  get2<T>(slice: string): Observable<Slice<T>> {
+    return this.store
+      .select2<T>(slice)
+      .pipe(switchMap((s) => of({ [slice]: s }) as Observable<Slice<T>>));
   }
 
   set<T extends Slice<T>>(slice: string, state: T): void {

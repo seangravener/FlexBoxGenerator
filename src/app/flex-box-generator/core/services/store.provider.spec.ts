@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { catchError, mergeMap, of, startWith, tap } from 'rxjs';
 import { Slice, StoreProvider } from './store.provider';
 
-fdescribe('StoreService', () => {
+fdescribe('StoreProvider', () => {
   let service: StoreProvider;
 
   beforeEach(() => {

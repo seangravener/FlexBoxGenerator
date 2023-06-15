@@ -1,4 +1,4 @@
-<ng-container *ngIf="flexItems$ | async as flexItems else showLoading">
+<div class="container mx-auto px-4" *ngIf="flexItems$ | async as flexItems else showLoading">
   <h3>Flex Item Options</h3>
 
   <items-actions></items-actions>
@@ -8,7 +8,7 @@
       {{ item.content }}
     </div>
   </ng-container>
-</ng-container>
+</div>
 
 <ng-template #showLoading>
   Loading ...

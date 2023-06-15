@@ -73,4 +73,20 @@ fdescribe('StoreProvider', () => {
       .subscribe((s) => expect(s).toEqual([{ x: 'y' }]))
       .unsubscribe();
   });
+
+  it('should support many subscriptions', () => {
+    const state = { a: [], z: {} };
+    const a$ = service.select('a');
+    const z$ = service.select('z');
+
+    service.set('a', state.a);
+    service.set('z', state.z);
+
+    a$.subscribe((s) => expect(s).toEqual(state.a)).unsubscribe();
+    z$.subscribe((s) => expect(s).toEqual(state.z)).unsubscribe();
+
+    service.set('a', state.z);
+    service.set('z', state.z);
+
+  });
 });

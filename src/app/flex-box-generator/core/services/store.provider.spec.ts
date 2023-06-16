@@ -1,15 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 import { catchError, mergeMap, of, startWith, tap } from 'rxjs';
 import { Slice, StoreProvider } from './store.provider';
+import { TestScheduler } from 'rxjs/testing';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 fdescribe('StoreProvider', () => {
   let service: StoreProvider;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [StoreProvider],
     });
     service = TestBed.inject(StoreProvider);
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   afterEach(() => {
@@ -74,7 +80,7 @@ fdescribe('StoreProvider', () => {
       .unsubscribe();
   });
 
-  it('should support many subscriptions', () => {
+  it('should support multiple subscriptions', () => {
     const state = { a: [], z: {} };
     const a$ = service.select('a');
     const z$ = service.select('z');
@@ -87,6 +93,23 @@ fdescribe('StoreProvider', () => {
 
     service.set('a', state.z);
     service.set('z', state.z);
+  });
 
+  it('should stream changes to all subs', () => {
+    const state = { a: [], b: {} };
+    const a$ = service.select('a');
+    const b$ = service.select('b');
+
+    service.set('a', state.a);
+    service.set('b', state.b);
+    // service.set('c', state.b);
+
+    scheduler.run(({ cold, expectObservable }) => {
+      const sources$ = cold('a-b-c|', state);
+      const expectedMarble = 'a-b-c|';
+
+      expectObservable(a$).toBe('a', state);
+      expectObservable(b$).toBe('b', state);
+    });
   });
 });

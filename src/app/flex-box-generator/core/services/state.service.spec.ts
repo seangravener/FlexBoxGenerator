@@ -6,7 +6,6 @@ import { StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
 import { FLEX_ITEMS } from '../fixtures/flex-items';
 
-
 const newFlexItem = new FlexItem({
   content: 'Item 1',
   style: { backgroundColor: 'red' },
@@ -24,6 +23,11 @@ fdescribe('StateService', () => {
     spyOn(storeProvider, 'select').and.returnValue(of(FLEX_ITEMS));
     spyOn(storeProvider, 'set');
   });
+
+  afterEach(() => {
+    storeProvider = {} as StoreProvider;
+    stateService = {} as StateService;
+  })
 
   it('should be created', () => {
     expect(stateService).toBeTruthy();

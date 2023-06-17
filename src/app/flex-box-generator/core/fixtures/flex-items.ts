@@ -1,9 +1,7 @@
-export const FLEX_ITEMS = {
-  flexItems: [
-    { content: 'Item 1', style: { backgroundColor: 'red' } },
-    { content: 'Item 2', style: { backgroundColor: 'red' } },
-    { content: 'Item 3', style: { backgroundColor: 'red' } },
-    { content: 'Item 4', style: { backgroundColor: 'blue' } },
-    { content: 'Item 5', style: { backgroundColor: 'blue' } },
-  ],
+import { FLEX_ITEM } from "../../components/flex-items/flex-item.constants";
+import { FlexItem } from "../../components/flex-items/flex-item.model";
+import { Slice } from "../services/store.provider";
+
+export const FLEX_ITEMS_SLICE: Slice<FlexItem[]> = {
+  flexItems: [FLEX_ITEM, FLEX_ITEM, FLEX_ITEM],
 };

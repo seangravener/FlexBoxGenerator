@@ -6,6 +6,13 @@
   <ng-container *ngFor="let item of flexItems">
     <div class="item-option">
       {{ item.content }}
+
+      <ul>
+        <li *ngFor="let styleProp of item.styleProperties">
+{{ styleProp }}
+        </li>
+      </ul>
+
     </div>
   </ng-container>
 </div>

@@ -1,20 +1,12 @@
 import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, delay, of, tap } from 'rxjs';
 
 import { Slice, StoreProvider } from './store.provider';
+import { DEFAULT_FLEX_ITEMS } from '../../components/flex-items/flex-item.constants';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
 
-export type FlexItems = FlexItem[];
-const api: Slice<FlexItems> = {
-  flexItems: [
-    { content: 'Item 1', style: { backgroundColor: 'red' } },
-    { content: 'Item 2', style: { backgroundColor: 'red' } },
-    { content: 'Item 3', style: { backgroundColor: 'red' } },
-    { content: 'Item 4', style: { backgroundColor: 'blue' } },
-    { content: 'Item 5', style: { backgroundColor: 'blue' } },
-  ] as FlexItem[],
-};
+const fakeApi$: Observable<any> = of(DEFAULT_FLEX_ITEMS);
 
 @Injectable({ providedIn: 'root' })
 export class StateService {
@@ -29,7 +21,7 @@ export class StateService {
     // .get<T>(`${api.local}/${slice}`)
     // .pipe(tap((state) => this.store.set<T>(slice, state as T)));
 
-    return of(api[slice] as T).pipe(
+    return fakeApi$.pipe(
       tap((state) => this.store.set<T>(slice, state as T))
     );
   }

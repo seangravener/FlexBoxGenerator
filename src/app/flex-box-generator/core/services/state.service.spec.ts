@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { StateService } from './state.service';
 import { StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
-import { FLEX_ITEMS } from '../fixtures/flex-items';
+import { FLEX_ITEMS_SLICE } from '../fixtures/flex-items';
 
 const newFlexItem = new FlexItem({
   content: 'Item 1',
@@ -20,7 +20,7 @@ fdescribe('StateService', () => {
 
     storeProvider = new StoreProvider();
     stateService = new StateService(storeProvider);
-    spyOn(storeProvider, 'select').and.returnValue(of(FLEX_ITEMS.flexItems));
+    spyOn(storeProvider, 'select').and.returnValue(of(FLEX_ITEMS_SLICE.flexItems));
     spyOn(storeProvider, 'set');
   });
 
@@ -30,13 +30,13 @@ fdescribe('StateService', () => {
 
   it('#fetchState should return a slice of state', () => {
     stateService.fetchState<FlexItem[]>('flexItems').subscribe((items) => {
-      expect(items).toEqual(FLEX_ITEMS.flexItems);
+      expect(items).toEqual(FLEX_ITEMS_SLICE.flexItems);
     });
   });
 
   it('#get should return a slice of state', () => {
     stateService.get<FlexItem[]>('flexItems').subscribe((items) => {
-      expect(items).toEqual(FLEX_ITEMS.flexItems);
+      expect(items).toEqual(FLEX_ITEMS_SLICE.flexItems);
     });
   });
 

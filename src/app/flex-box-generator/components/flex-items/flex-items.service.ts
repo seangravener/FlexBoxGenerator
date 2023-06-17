@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StateService } from '../../core/services/state.service';
-import { filter, startWith, takeWhile, tap } from 'rxjs';
+import { filter, map, share, shareReplay, startWith, takeWhile, tap } from 'rxjs';
 import { FlexItem } from './flex-item.model';
+import { DEFAULT_FLEX_ITEMS } from './flex-item.constants';
 
 @Injectable({ providedIn: 'root' })
 export class FlexItemsService {
@@ -10,8 +11,10 @@ export class FlexItemsService {
   constructor(private stateService: StateService) {}
 
   flexItems$ = this.stateService.get<FlexItem[]>('flexItems').pipe(
-    takeWhile((items) => !!items),
-    tap((items) => (this.flexItems = items))
+    takeWhile((items) => Boolean(items)),
+    map((items) => items.map((item) => new FlexItem(item))),
+    tap((items) => (this.flexItems = items)),
+    shareReplay()
   );
 
   addItem() {
@@ -23,6 +26,6 @@ export class FlexItemsService {
   }
 
   resetItems() {
-    this.stateService.set('flexItems', []);
+    this.stateService.set('flexItems', DEFAULT_FLEX_ITEMS);
   }
 }

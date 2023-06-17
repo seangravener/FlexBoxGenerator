@@ -9,11 +9,11 @@ import { Observable, of } from 'rxjs';
 import { Slice } from '../../core/services/store.provider';
 import { FlexItemsService } from '../flex-items/flex-items.service';
 import { FlexItem } from '../flex-items/flex-item.model';
-import { FLEX_ITEMS } from '../../core/fixtures/flex-items';
+import { FLEX_ITEMS_SLICE } from '../../core/fixtures/flex-items';
 
 let mockFlexItemsService = class implements Partial<FlexItemsService> {
   get flexItems$(): Observable<any> | undefined {
-    return of(FLEX_ITEMS as Slice<FlexItem[]>);
+    return of(FLEX_ITEMS_SLICE as Slice<FlexItem[]>);
   }
 };
 

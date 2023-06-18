@@ -1,6 +1,6 @@
 import { FlexItem } from './flex-item.model';
 
-export const FLEX_ITEM_STYLE = { backgroundColor: 'red', alignSelf: 'auto' };
+export const FLEX_ITEM_STYLE = { backgroundColor: 'gray', alignSelf: 'auto' };
 export const FLEX_ITEM = { content: 'Item', style: FLEX_ITEM_STYLE };
 
 export const DEFAULT_STYLES = { ...FLEX_ITEM.style };

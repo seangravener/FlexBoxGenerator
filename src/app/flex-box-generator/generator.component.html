@@ -1,9 +1,9 @@
-<div *ngIf="flexItems$ | async as flexItems" class="container-fluid">
+<div *ngIf="flexItems$ | async as flexItems" class="container">
   <div class="row">
-    <aside class="col-3">
+    <aside class="col-2">
       <flex-container *ngIf="flexItems"></flex-container>
     </aside>
-    <main class="col-6">
+    <main class="col-7">
       <flex-canvas></flex-canvas>
     </main>
     <aside class="col-3">

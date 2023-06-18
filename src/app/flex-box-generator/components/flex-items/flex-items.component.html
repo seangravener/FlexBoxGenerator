@@ -1,20 +1,21 @@
-<div class="container mx-auto px-4" *ngIf="flexItems$ | async as flexItems else showLoading">
-  <h3>Flex Item Options</h3>
+<div class="container mx-auto p-4 bg-slate-200 rounded-lg shadow-lg border border-slate-300"
+  *ngIf="flexItems$ | async as flexItems else showLoading">
 
+  <h3>Flex Item Options</h3>
   <items-actions></items-actions>
 
-  <ng-container *ngFor="let item of flexItems">
-    <div class="item-option">
+  <ul *ngFor="let item of flexItems">
+    <li class="item-option">
       {{ item.content }}
 
       <ul>
         <li *ngFor="let styleProp of item.styleProperties">
-{{ styleProp }}
+          {{ styleProp }}
         </li>
       </ul>
 
-    </div>
-  </ng-container>
+    </li>
+  </ul>
 </div>
 
 <ng-template #showLoading>

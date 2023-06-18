@@ -1,14 +1,11 @@
-<div class="item-option--actions">
-  <button class="btn btn-outline-primary" (click)="onAddItem()">
-    <i class="fa fa-pencil"></i>
-    Add +
+<div class="flex item-option--actions" role="group">
+  <button class="btn btn-primary rounded-r-none" (click)="onAddItem()">
+    <i class="gg-add-r"></i> Add
   </button>
-  <button class="btn btn-outline-danger" (click)="onDeleteItem()">
-    <i class="fa fa-trash"></i>
-    Remove -
+  <button class="btn btn-primary rounded-none" (click)="onDeleteItem()">
+    <i class="gg-math-minus"></i> Remove
   </button>
-  <button class="btn btn-outline-danger" (click)="onResetItems()">
-    <i class="fa fa-trash"></i>
-    Reset
+  <button class="btn rounded-l-none" (click)="onResetItems()">
+    <i class="gg-trash"></i> Reset
   </button>
 </div>

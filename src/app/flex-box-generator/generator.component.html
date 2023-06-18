@@ -1,8 +1,11 @@
-<div *ngIf="flexItems$ | async as flexItems" class="container">
+<div *ngIf="flexItems$ | async as flexItems" class="container mx-auto">
   <div class="row">
     <aside class="col-2">
       <flex-container *ngIf="flexItems"></flex-container>
     </aside>
+    <div class="my-3">
+      <flex-item-actions></flex-item-actions>
+    </div>
     <main class="col-7">
       <flex-canvas></flex-canvas>
     </main>

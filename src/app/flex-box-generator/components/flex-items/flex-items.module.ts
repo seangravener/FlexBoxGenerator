@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [SharedModule, CommonModule],
   declarations: [FlexItemsComponent, ItemsActionsComponent],
-  exports: [FlexItemsComponent],
+  exports: [FlexItemsComponent, ItemsActionsComponent],
   providers: [FlexItemsService],
 })
 export class FlexItemsModule {}

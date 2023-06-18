@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FlexItemsService } from '../flex-items.service';
 
 @Component({
-  selector: 'items-actions',
-  templateUrl: './items-actions.component.html',
-  styleUrls: ['./items-actions.component.scss'],
+  selector: 'flex-item-actions',
+  templateUrl: './flex-item-actions.component.html',
+  styleUrls: ['./flex-item-actions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ItemsActionsComponent {
+export class FlexItemActionsComponent {
   constructor(private flexItemsService: FlexItemsService) {}
 
   onAddItem() {

@@ -2,7 +2,7 @@
   *ngIf="flexItems$ | async as flexItems else showLoading">
 
   <h3>Flex Item Options</h3>
-  <items-actions></items-actions>
+  <flex-item-actions></flex-item-actions>
 
   <ul *ngFor="let item of flexItems">
     <li class="item-option">

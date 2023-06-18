@@ -5,6 +5,7 @@ import { StateService } from './state.service';
 import { StoreProvider } from './store.provider';
 import { FlexItem } from '../../components/flex-items/flex-item.model';
 import { FLEX_ITEMS } from '../fixtures/flex-items';
+import { TestScheduler } from 'rxjs/testing';
 
 const newFlexItem = new FlexItem({
   content: 'Item 1',
@@ -14,6 +15,7 @@ const newFlexItem = new FlexItem({
 fdescribe('StateService', () => {
   let stateService: StateService;
   let storeProvider: StoreProvider;
+  let scheduler: TestScheduler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [StateService] });
@@ -22,6 +24,10 @@ fdescribe('StateService', () => {
     stateService = new StateService(storeProvider);
     spyOn(storeProvider, 'select').and.returnValue(of(FLEX_ITEMS));
     spyOn(storeProvider, 'set');
+
+    scheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected);
+    });
   });
 
   afterEach(() => {
@@ -47,6 +53,25 @@ fdescribe('StateService', () => {
 
   it('#set should set state', () => {
     stateService.set('flexItems', [newFlexItem] as FlexItem[]);
-    expect(storeProvider.set).toHaveBeenCalled();
+    expect(storeProvider.set).toHaveBeenCalledWith('flexItems', [newFlexItem]);
+  });
+
+  xit('should replay a cache for new subs', () => {
+    // stateService.set('flexItems', [newFlexItem] as FlexItem[]);
+    // stateService.get<FlexItem[]>('flexItems').subscribe((items) => {
+    //   // expect(items).toEqual([newFlexItem]);
+    // });
+
+    scheduler.run(({ expectObservable }) => {
+      const expected = 'a';
+      const expectedValues = FLEX_ITEMS.flexItems;
+
+      expectObservable(stateService.fetchState<FlexItem[]>('flexItems')).toBe(
+        expected,
+        expectedValues
+      );
+    });
+
+    // expect(storeProvider.set).toHaveBeenCalledWith('flexItems', [newFlexItem]);
   });
 });

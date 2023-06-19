@@ -1,12 +1,34 @@
-export type FlexContainerStylesKeys = 'flexDirection' | 'flexWrap' | 'justifyContent' | 'alignItems' | 'alignContent';
+export type CommonStylesKeys = {
+  width?: string;
+  height?: string;
+  padding?: string;
+  margin?: string;
+  backgroundColor?: string;
+  background?: string;
+  color?: string;
+};
 
-export type FlexItemStylesKeys = 'order' | 'flexGrow' | 'flexShrink' | 'flexBasis' | 'alignSelf';
-
-export interface FlexItemStyles {
-  [styleProp: string]: string | undefined;
+export interface FlexContainerStyleProps extends CommonStylesKeys {
+  flexDirection?: string;
+  flexWrap?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  alignContent?: string;
 }
+
+export interface FlexItemStyleProps extends CommonStylesKeys {
+  order?: string;
+  flexGrow?: string;
+  flexShrink?: string;
+  flexBasis?: string;
+  alignSelf?: string;
+}
+
+export type FlexItemStyle = {
+  [property in keyof FlexItemStyleProps]: string | undefined;
+};
 
 export interface FlexItemProps {
   content: string;
-  style: FlexItemStyles;
+  style: FlexItemStyle;
 }

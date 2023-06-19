@@ -1,10 +1,8 @@
-<div class="container prose mx-auto p-4 border border-slate-300"
-  *ngIf="flexItems$ | async as flexItems else showLoading">
+<div class="p-4" *ngIf="flexItems$ | async as flexItems else showLoading">
 
-  <h3>Flex Item Options</h3>
   <flex-item-actions></flex-item-actions>
 
-  <ul *ngFor="let item of flexItems">
+  <ul class="flex flex-col gap-4 mb-4" *ngFor="let item of flexItems">
     <li class="item-option">
       {{ item.content }}
 

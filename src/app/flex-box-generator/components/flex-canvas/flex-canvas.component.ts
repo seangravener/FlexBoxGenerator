@@ -12,7 +12,7 @@ export class FlexCanvasComponent {
   flexItems$ = this.flexItemsService.flexItems$;
 
   @HostBinding('class') defaultClasses =
-    'container flex flex-col gap-3 border border-gray-900 p-3 my-3 mx-auto';
+    'flex flex-col gap-4 p-4 bg-slate-100';
 
   @HostBinding('style.height.px') height = 500;
 

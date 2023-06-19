@@ -1,4 +1,4 @@
-<div #canvas *ngIf="flexItems$ | async as flexItems" class="canvas bordered">
+<div #canvas *ngIf="flexItems$ | async as flexItems">
   <div class="container" [style.display]="canvasDisplayMode">
     <div *ngFor="let item of flexItems" class="box bordered" [style.background]="item.style.backgroundColor">
       <div class="content">

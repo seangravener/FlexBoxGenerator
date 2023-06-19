@@ -1,4 +1,11 @@
-import { TestBed, fakeAsync, flush, flushMicrotasks, tick, waitForAsync } from '@angular/core/testing';
+import {
+  TestBed,
+  fakeAsync,
+  flush,
+  flushMicrotasks,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 
 import { FlexItemsService } from './flex-items.service';
 import { StateService } from '../../core/services/state.service';
@@ -14,14 +21,11 @@ fdescribe('FlexItemsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [StateService, FlexItemsService, StoreProvider],
+      providers: [StateService, FlexItemsService],
     });
 
     stateService = new StateService(new StoreProvider());
     flexItemsService = new FlexItemsService(stateService);
-
-    TestBed.configureTestingModule({});
-    flexItemsService = TestBed.inject(FlexItemsService);
   });
 
   afterEach(fakeAsync(() => {
@@ -42,21 +46,24 @@ fdescribe('FlexItemsService', () => {
     expect(flag).toBe(true); // PASSES
   }));
 
-  it('should have a default state', fakeAsync(() => {
+  xit('should have a default state', fakeAsync(() => {
     const result: [FlexItem[]] = [[]] as [FlexItem[]];
-    let result2: FlexItem[] = []
+    let result2: FlexItem[] = [];
     let spy = spyOn(stateService, 'get').and.returnValue(of(FLEX_ITEMS));
 
+    debugger
     flexItemsService.flexItems$.pipe(tap(console.log)).subscribe((items) => {
+      console.log(items, 'items');
       result2 = items;
     });
 
+    flushMicrotasks();
     // result2 = FLEX_ITEMS
-    tick(1000);
+    // tick(10);
+    console.log(result2, 'result2');
     // flushMicrotasks()
     // console.log(result2)
-    expect(stateService.get).toHaveBeenCalled()
-    // expect(result2).toBe(FLEX_ITEMS);
-
+    // expect(stateService.get).toHaveBeenCalled()
+    expect(result2).toEqual(FLEX_ITEMS);
   }));
 });

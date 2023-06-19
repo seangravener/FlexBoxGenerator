@@ -1,6 +1,6 @@
 <div #canvas *ngIf="flexItems$ | async as flexItems">
   <div class="container" [style.display]="canvasDisplayMode">
-    <div *ngFor="let item of flexItems" class="box bordered" [style.background]="item.style.backgroundColor">
+    <div *ngFor="let item of flexItems" class="box bordered" [style.backgroundColor]="item.style['backgroundColor']">
       <div class="content">
         <div class="content--title">{{ item.content }}</div>
       </div>

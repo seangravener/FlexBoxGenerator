@@ -7,8 +7,8 @@
       {{ item.content }}
 
       <ul>
-        <li *ngFor="let styleProp of item.styleProperties">
-          {{ styleProp }}
+        <li *ngFor="let style of item.styleProperties">
+          {{ style.key }} : {{ style.value }}
         </li>
       </ul>
 

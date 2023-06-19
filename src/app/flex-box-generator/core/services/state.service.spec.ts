@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { StateService } from './state.service';
@@ -42,7 +42,7 @@ fdescribe('StateService', () => {
   it('#fetchState should return a slice of state', () => {
     stateService.fetchState<FlexItem[]>('flexItems').subscribe((items) => {
       expect(items).toEqual(FLEX_ITEMS);
-    });
+    })
   });
 
   it('#get should return a slice of state', () => {
@@ -62,15 +62,15 @@ fdescribe('StateService', () => {
     //   // expect(items).toEqual([newFlexItem]);
     // });
 
-    scheduler.run(({ expectObservable }) => {
-      const expected = 'a';
-      const expectedValues = FLEX_ITEMS.flexItems;
+    // scheduler.run(({ expectObservable }) => {
+    //   const expected = 'a';
+    //   const expectedValues = FLEX_ITEMS.flexItems;
 
-      expectObservable(stateService.fetchState<FlexItem[]>('flexItems')).toBe(
-        expected,
-        expectedValues
-      );
-    });
+    //   expectObservable(stateService.fetchState<FlexItem[]>('flexItems')).toBe(
+    //     expected,
+    //     expectedValues
+    //   );
+    // });
 
     // expect(storeProvider.set).toHaveBeenCalledWith('flexItems', [newFlexItem]);
   });

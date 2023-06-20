@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexItemsService } from './components/flex-items/flex-items.service';
 import { FlexItemsModule } from './components/flex-items/flex-items.module';
+import { ThemeService } from './core/services/theme.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { FlexItemsModule } from './components/flex-items/flex-items.module';
   ],
   imports: [CoreModule, SharedModule, FlexItemsModule, NgbModule],
   exports: [FlexBoxGeneratorComponent],
-  providers: [FlexItemsService],
+  providers: [FlexItemsService, ThemeService],
 })
 export class FlexBoxGeneratorModule {}

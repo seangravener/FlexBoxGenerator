@@ -2,12 +2,12 @@
 
   <flex-item-actions></flex-item-actions>
 
-  <ul class="flex flex-col gap-4 mb-4" *ngFor="let item of flexItems">
+  <ul class="flex flex-col gap-4 my-4" *ngFor="let item of flexItems">
     <li class="item-option">
-      {{ item.content }}
+      content: {{ item.content }}
 
       <ul>
-        <li *ngFor="let style of item.styleProperties">
+        <li *ngFor="let style of item.style | keyvalue">
           {{ style.key }} : {{ style.value }}
         </li>
       </ul>

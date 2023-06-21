@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 
 import { FlexBoxGeneratorComponent } from './generator.component';
-import { FlexCanvasComponent } from './components/flex-canvas/flex-canvas.component';
 import { FlexContainerComponent } from './components/flex-container/flex-container.component';
+import { FlexContainerToolsetComponent } from './components/app-toolbar/flex-container-toolset/flex-container-toolset.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexItemsService } from './components/flex-items/flex-items.service';
 import { FlexItemsModule } from './components/flex-items/flex-items.module';
 import { ThemeService } from './core/services/theme.service';
+import { AppToolbarComponent } from './components/app-toolbar/app-toolbar.component';
 
 @NgModule({
   declarations: [
     FlexBoxGeneratorComponent,
-    FlexCanvasComponent,
     FlexContainerComponent,
+    FlexContainerToolsetComponent,
+    AppToolbarComponent,
   ],
   imports: [CoreModule, SharedModule, FlexItemsModule, NgbModule],
   exports: [FlexBoxGeneratorComponent],

@@ -1,26 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Output } from '@angular/core';
-import { CONTAINER } from './flex-container.constants';
-import { FlexContainer } from './flex-container.model';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { FlexItemsService } from '../flex-items/flex-items.service';
 
 @Component({
   selector: 'flex-container',
   templateUrl: './flex-container.component.html',
   styleUrls: ['./flex-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlexContainerComponent {
-  @Output() next: EventEmitter<FlexContainer[]> = new EventEmitter();
-  @Output() reset: EventEmitter<[]> = new EventEmitter();
+  canvasDisplayMode = 'flex';
+  flexItems$ = this.flexItemsService.flexItems$;
+  @HostBinding('class') defaultClasses = 'flex flex-col gap-4 p-4';
+  @HostBinding('style.height.px') height = 500;
 
-  nextContainer() {
-    this.next.emit([CONTAINER as FlexContainer]);
-  }
-
-  resetItems() {
-    this.reset.emit();
-  }
-
-  toggleCanvasDisplayMode() {
-    // this.canvasDisplayMode = this.canvasDisplayMode === 'flex' ? 'grid' : 'flex';
-  }
+  constructor(private flexItemsService: FlexItemsService) {}
 }

@@ -11,8 +11,7 @@ export class FlexCanvasComponent {
   canvasDisplayMode = 'flex';
   flexItems$ = this.flexItemsService.flexItems$;
 
-  @HostBinding('class') defaultClasses =
-    'flex flex-col gap-4 p-4 bg-slate-100';
+  @HostBinding('class') defaultClasses = 'flex flex-col gap-4 p-4';
 
   @HostBinding('style.height.px') height = 500;
 

@@ -2,11 +2,10 @@ import { FlexItemStyle } from './flex-item.interface';
 import { FlexItem } from './flex-item.model';
 
 export const FLEX_ITEM_STYLE = {
-  backgroundColor: 'gray',
-  color: 'black',
-  alignSelf: 'auto',
+  backgroundColor: 'rgba(255, 255, 255, .01)',
+  color: 'white',
 };
-export const FLEX_ITEM = { content: 'Item', style: FLEX_ITEM_STYLE };
+export const FLEX_ITEM = { content: '👋', style: FLEX_ITEM_STYLE };
 
 export const DEFAULT_STYLES = <FlexItemStyle>{ ...FLEX_ITEM.style };
 export const DEFAULT_CONTENT = FLEX_ITEM.content;

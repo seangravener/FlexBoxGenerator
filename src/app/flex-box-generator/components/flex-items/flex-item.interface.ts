@@ -1,27 +1,11 @@
-export type CommonStylesKeys = {
-  width?: string;
-  height?: string;
-  padding?: string;
-  margin?: string;
-  backgroundColor?: string;
-  background?: string;
-  color?: string;
-};
-
-export interface FlexContainerStyleProps extends CommonStylesKeys {
-  flexDirection?: string;
-  flexWrap?: string;
-  justifyContent?: string;
-  alignItems?: string;
-  alignContent?: string;
-}
+import { CommonStylesKeys } from "../../shared/interfaces/common-styles.interface";
 
 export interface FlexItemStyleProps extends CommonStylesKeys {
   order?: string;
   flexGrow?: string;
-  flexShrink?: string;
   flexBasis?: string;
   alignSelf?: string;
+  flexShrink?: string;
 }
 
 export type FlexItemStyle = {

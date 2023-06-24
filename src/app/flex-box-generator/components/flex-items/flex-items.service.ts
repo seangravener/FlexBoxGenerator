@@ -3,12 +3,16 @@ import { StateService } from '../../core/services/state.service';
 import { map, shareReplay, takeWhile, tap } from 'rxjs';
 import { FlexItem } from './flex-item.model';
 import { DEFAULT_FLEX_ITEMS, DEFAULT_STYLES } from './flex-item.constants';
+import { FlexContainerService } from '../flex-container/flex-container.service';
 
 @Injectable({ providedIn: 'root' })
 export class FlexItemsService {
   flexItems: FlexItem[] = [];
 
-  constructor(private stateService: StateService) {}
+  constructor(
+    private stateService: StateService,
+    private flexContainerService: FlexContainerService
+  ) {}
 
   flexItems$ = this.stateService.get<FlexItem[]>('flexItems').pipe(
     takeWhile((items) => Boolean(items)),
@@ -30,6 +34,7 @@ export class FlexItemsService {
 
   resetItems() {
     this.stateService.set('flexItems', DEFAULT_FLEX_ITEMS);
+    this.flexContainerService.reset();
   }
 
   generateEmoji() {

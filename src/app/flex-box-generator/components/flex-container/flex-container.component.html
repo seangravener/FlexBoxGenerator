@@ -1,5 +1,7 @@
-<div *ngIf="flexItems$ | async as flexItems">
-  <div class="container overflow-hidden" [style.display]="canvasDisplayMode">
+contain: {{ flexContainer$ | async | json }}
+
+<ng-container *ngIf="flexItems$ | async as flexItems">
+  <div *ngIf="flexContainer$ | async as flexContainer" class="container overflow-hidden" [style]="flexContainer.style">
     <div *ngFor="let item of flexItems"
       class="flex justify-center items-center border border-slate-800 rounded-md text-black m-1 p-2 h-24 w-24"
       [style]="item.style">
@@ -8,7 +10,7 @@
       </div>
     </div>
   </div>
-</div>
+</ng-container>
 
 <ng-template #showLoading>
   Loading ...

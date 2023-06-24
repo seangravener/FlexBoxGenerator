@@ -1,1 +1,15 @@
-<flex-item-actions></flex-item-actions>
+<div
+  *ngIf="flexContainer$ | async as flexContainer"
+  class="flex items-center gap-8"
+>
+  <flex-item-actions></flex-item-actions>
+  <label class="flex items-center gap-2">
+    <code><pre>display: flex</pre></code>
+    <input
+      type="checkbox"
+      [checked]="flexContainer.style?.display === 'flex'"
+      class="checkbox checkbox-sm"
+      (click)="onChangeDisplayMode($event)"
+    />
+  </label>
+</div>

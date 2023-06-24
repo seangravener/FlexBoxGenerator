@@ -4,8 +4,8 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import { CONTAINER } from './flex-container.constants';
-import { FlexContainer } from './flex-container.model';
+import { FlexContainerService } from '../../flex-container/flex-container.service';
+import { FlexContainerStyleProps } from '../../flex-container/flex-container.interface';
 
 @Component({
   selector: 'flex-container-toolset',
@@ -14,18 +14,31 @@ import { FlexContainer } from './flex-container.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlexContainerToolsetComponent {
-  @Output() next: EventEmitter<FlexContainer[]> = new EventEmitter();
-  @Output() reset: EventEmitter<[]> = new EventEmitter();
+  flexContainer$ = this.flexContainerService.flexContainer$;
 
-  nextContainer() {
-    this.next.emit([CONTAINER as FlexContainer]);
+  get flexContainer() {
+    return this.flexContainerService.flexContainer;
   }
+
+  get currentDisplayMode() {
+    return this.flexContainer.style?.display;
+  }
+
+  constructor(private flexContainerService: FlexContainerService) {}
+
+  nextContainer() {}
 
   resetItems() {
-    this.reset.emit();
+    this.flexContainerService.setStyleProps({});
   }
 
-  toggleCanvasDisplayMode() {
-    // this.canvasDisplayMode = this.canvasDisplayMode === 'flex' ? 'grid' : 'flex';
+  onChangeDisplayMode(e: any) {
+    this.toggleDisplayMode();
+  }
+
+  toggleDisplayMode() {
+    this.flexContainerService.setStyleProps({
+      display: this.currentDisplayMode === 'flex' ? 'block' : 'flex',
+    });
   }
 }

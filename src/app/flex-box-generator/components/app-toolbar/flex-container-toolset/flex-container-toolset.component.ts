@@ -20,6 +20,10 @@ export class FlexContainerToolsetComponent {
     return this.flexContainerService.flexContainer;
   }
 
+  get flexContainerStyleOptions() {
+    return this.flexContainerService.flexContainerStyleOptions;
+  }
+
   get currentDisplayMode() {
     return this.flexContainer.style?.display;
   }
@@ -30,6 +34,12 @@ export class FlexContainerToolsetComponent {
 
   resetItems() {
     this.flexContainerService.setStyleProps({});
+  }
+
+  onChangeFlexDisplayMode(e: any) {
+    this.flexContainerService.setStyleProps({
+      display: e.target.value,
+    });
   }
 
   onChangeDisplayMode(e: any) {

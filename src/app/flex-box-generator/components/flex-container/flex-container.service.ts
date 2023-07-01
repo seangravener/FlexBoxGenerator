@@ -7,6 +7,7 @@ import {
 import { tap } from 'rxjs';
 import { FlexContainer } from './flex-container.model';
 import { DEFAULT_FLEX_CONTAINER } from './flex-container.constants';
+import { flexDisplayOptions } from '../../shared/interfaces/flex-styles.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +18,18 @@ export class FlexContainerService {
     .get<FlexContainerProps>('flexContainer')
     .pipe(tap((flexContainer) => (this.flexContainer = flexContainer)));
 
+  flexContainerStyleOptions = { display: flexDisplayOptions };
+
   constructor(private stateService: StateService) {}
 
   setStyleProps(styleProps: FlexContainerStyleProps) {
+    const { flexContainer } = this;
+
     this.stateService.set<FlexContainer>(
       'flexContainer',
       new FlexContainer({
-        style: { ...this.flexContainer.style, ...styleProps },
+        ...flexContainer,
+        style: { ...flexContainer.style, ...styleProps },
       })
     );
   }

@@ -39,9 +39,11 @@ export type FlexJustifyItems =
   | 'baseline'
   | 'stretch';
 
-export type FlexDisplay =
-  | 'flex'
-  | 'inline-flex'
-  | 'block'
-  | 'inline-block'
-  | 'none';
+export const flexDisplayOptions = [
+  'flex',
+  'inline-flex',
+  'block',
+  'inline-block',
+  'none',
+] as const;
+export type FlexDisplay = (typeof flexDisplayOptions)[number];

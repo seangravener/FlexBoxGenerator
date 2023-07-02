@@ -1,12 +1,20 @@
 <ng-container *ngIf="flexItems$ | async as flexItems">
-  <aside class="flex flex-col gap-4 mb-4">
-    <flex-container-toolset *ngIf="flexItems" (next)="onNextFlexContainer()"></flex-container-toolset>
-  </aside>
-  <main class="flex gap-6">
-    <flex-container *ngIf="flexContainer$ | async"
-      class="w-2/3 dark:bg-slate-900 border border-slate-700 rounded-md"></flex-container>
-    <aside class="w-1/3">
-      <flex-items *ngIf="flexItems"></flex-items>
+
+  <div class="flex gap-4 mb-4">
+    <div class="w-1/4 p-4">
+      <flex-container-toolset></flex-container-toolset>
+    </div>
+    <main class="flex-grow flex flex-col flex-wrap gap-2 w-full">
+      <div class="border border-slate-950 p-4 text-slate-400 rounded-md">
+        <div class="prose">
+          presets
+        </div>
+      </div>
+      <flex-container *ngIf="flexContainer$ | async"></flex-container>
+    </main>
+    <aside class="w-1/3 p-4">
+      <flex-item-actions></flex-item-actions>
+      <flex-items></flex-items>
     </aside>
-  </main>
+  </div>
 </ng-container>

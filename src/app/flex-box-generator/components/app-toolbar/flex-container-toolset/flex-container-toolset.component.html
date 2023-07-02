@@ -1,9 +1,8 @@
 <div *ngIf="flexContainer$ | async as flexContainer" class="flex flex-wrap items-center gap-8">
-  <flex-item-actions></flex-item-actions>
-  <label class="flex items-center gap-2">
+  <!-- <label class="flex items-center gap-2">
     <code><pre>Display: flex</pre></code>
     <input type="checkbox" [checked]="flexContainer.style?.display === 'flex'" class="checkbox checkbox-sm"
-      name="display" (click)="onChange($event)" />
+      name="display" (change)="onChange($event)" />
   </label>
 
   <label class="flex items-center gap-4">
@@ -23,15 +22,19 @@
         {{ option }}
       </option>
     </select>
-  </label>
+  </label> -->
 
-  <!-- keyvalue pipe is flattening style array; -->
-  <label *ngFor="let style of flexContainerStyleOptions | keyvalue" class="flex items-center gap-4">
-    {{ style.key }}
-    <select class="select select-bordered flex-grow" (change)="onChange($event)" [name]="style.key">
-      <option *ngFor="let option of style.value" [value]="option">
-        {{ option }}
-      </option>
-    </select>
-  </label>
+  <div class="">
+    <form class="flex flex-col gap-1">
+      <label *ngFor="let style of flexContainerStyleOptions | keyvalue" class="flex items-center gap-1">
+        <code><pre>{{ style.key }}: </pre></code>
+
+        <select class="select select-bordered flex-grow" (change)="onChange($event)" [name]="style.key">
+          <option *ngFor="let option of style.value" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </label>
+    </form>
+  </div>
 </div>

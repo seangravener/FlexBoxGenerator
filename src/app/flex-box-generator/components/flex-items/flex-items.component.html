@@ -1,7 +1,4 @@
-<div class="p-4" *ngIf="flexItems$ | async as flexItems else showLoading">
-
-  <flex-item-actions></flex-item-actions>
-
+<div *ngIf="flexItems$ | async as flexItems else showLoading">
   <ul class="flex flex-col gap-4 my-4" *ngFor="let item of flexItems">
     <li class="item-option">
       content: {{ item.content }}

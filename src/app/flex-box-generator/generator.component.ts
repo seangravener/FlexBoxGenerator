@@ -1,21 +1,14 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  ViewChild,
-} from '@angular/core';
-import { startWith } from 'rxjs';
-import { FlexItem } from './components/flex-items/flex-item.model';
-import { StateService } from './core/services/state.service';
-import { ThemeService } from './core/services/theme.service';
-import { FlexContainer } from './components/flex-container/flex-container.model';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostBinding, HostListener, ViewChild } from '@angular/core'
+import { startWith } from 'rxjs'
+import { FlexItem } from './components/flex-items/flex-item.model'
+import { StateService } from './core/services/state.service'
+import { ThemeService } from './core/services/theme.service'
+import { FlexContainer } from './components/flex-container/flex-container.model'
 
 export type ThemeChangeEvent = {
-  theme: string;
-  payload: any;
-};
+  theme: string
+  payload: any
+}
 
 @Component({
   selector: 'app-flex-box-generator',
@@ -23,7 +16,7 @@ export type ThemeChangeEvent = {
   styles: [],
 })
 export class FlexBoxGeneratorComponent implements AfterViewInit {
-  onThemeChange = new EventEmitter<ThemeChangeEvent>();
+  onThemeChange = new EventEmitter<ThemeChangeEvent>()
 
   // @HostListener('window:customEvent', ['$event'])
   // updateHtmlClass(event: ThemeChangeEvent) {
@@ -36,26 +29,23 @@ export class FlexBoxGeneratorComponent implements AfterViewInit {
   //   console.log('Payload:', payload);
   // }
 
-  constructor(
-    private stateService: StateService,
-    private themeService: ThemeService
-  ) {}
+  constructor(private stateService: StateService, private themeService: ThemeService) {}
 
-  flexItems$ = this.stateService.fetchState<FlexItem[]>('flexItems');
-  flexContainer$ = this.stateService.fetchState<FlexContainer>('flexContainer');
-  activeTheme$ = this.themeService.activeTheme$;
+  flexItems$ = this.stateService.fetchState<FlexItem[]>('flexItems')
+  flexContainer$ = this.stateService.fetchState<FlexContainer>('flexContainer')
+  activeTheme$ = this.themeService.activeTheme$
 
   setTheme(theme: string): void {
-    this.onThemeChange.emit({ theme, payload: {} });
-    this.themeService.setTheme(theme as any);
+    this.onThemeChange.emit({ theme, payload: {} })
+    this.themeService.setTheme(theme as any)
   }
 
   onNextFlexContainer() {
-    console.log('onNextFlexContainer');
+    console.log('onNextFlexContainer')
     // this.stateService.set('flexContainer', flexContainer);
   }
 
   ngAfterViewInit(): void {
-    this.setTheme('cupcake');
+    this.setTheme('cupcake')
   }
 }

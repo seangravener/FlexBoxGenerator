@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FlexContainerService } from '../flex-container/flex-container.service'
-import { map } from 'rxjs'
+import { filter, map, of, switchMap } from 'rxjs'
+import { FlexContainerStyleProps } from '../flex-container/flex-container.interface'
 
 @Component({
   selector: 'flex-output',
@@ -10,6 +11,17 @@ import { map } from 'rxjs'
 })
 export class FlexOutputComponent {
   flexContainer$ = this.flexContainerService.flexContainer$
-  flexContainerStyles$ = this.flexContainer$.pipe(map((flexContainer) => flexContainer.style))
+  flexContainerStyles$ = this.flexContainer$.pipe(
+    switchMap((container) => of(this.filterStyleKeys(container.style))),
+  )
+
   constructor(private flexContainerService: FlexContainerService) {}
+
+  private filterStyleKeys(styleObj: FlexContainerStyleProps | undefined) {
+    return Object.fromEntries(
+      Object.entries({ ...styleObj }).filter(
+        ([key, value]) => value !== 'auto',
+      ),
+    )
+  }
 }

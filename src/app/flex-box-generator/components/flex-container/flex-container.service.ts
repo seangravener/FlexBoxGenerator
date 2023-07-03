@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { StateService } from '../../core/services/state.service'
 import { FlexContainerProps, FlexContainerStyleProps } from './flex-container.interface'
-import { tap } from 'rxjs'
+import { map, shareReplay, takeWhile, tap } from 'rxjs'
 import { FlexContainer } from './flex-container.model'
 import { DEFAULT_FLEX_CONTAINER } from './flex-container.constants'
 import { flexContainerStyleOptions } from '../../shared/interfaces/flex-styles.interface'
@@ -11,24 +11,24 @@ import { flexContainerStyleOptions } from '../../shared/interfaces/flex-styles.i
 })
 export class FlexContainerService {
   flexContainer: FlexContainerProps = {}
-  flexContainer$ = this.stateService
-    .get<FlexContainerProps>('flexContainer')
-    .pipe(tap((flexContainer) => (this.flexContainer = flexContainer)))
+  flexContainer$ = this.stateService.get<FlexContainerProps>('flexContainer').pipe(
+    takeWhile((container) => Boolean(container)),
+    map((container) => new FlexContainer({ ...container })),
+    tap((flexContainer) => (this.flexContainer = flexContainer)),
+    shareReplay(),
+  )
 
-  flexContainerStyleOptions = flexContainerStyleOptions;
+  flexContainerStyleOptions = flexContainerStyleOptions
 
   constructor(private stateService: StateService) {}
 
   setStyleProps(styleProps: FlexContainerStyleProps) {
     const { flexContainer } = this
 
-    this.stateService.set<FlexContainer>(
-      'flexContainer',
-      new FlexContainer({
-        ...flexContainer,
-        style: { ...flexContainer.style, ...styleProps },
-      }),
-    )
+    this.stateService.set<FlexContainer>('flexContainer', {
+      ...flexContainer,
+      style: { ...flexContainer.style, ...styleProps },
+    } as FlexContainer)
   }
 
   reset() {

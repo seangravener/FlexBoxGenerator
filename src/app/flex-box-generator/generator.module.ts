@@ -10,6 +10,7 @@ import { FlexItemsService } from './components/flex-items/flex-items.service';
 import { FlexItemsModule } from './components/flex-items/flex-items.module';
 import { ThemeService } from './core/services/theme.service';
 import { AppToolbarComponent } from './components/app-toolbar/app-toolbar.component';
+import { FlexOutputComponent } from './components/flex-output/flex-output.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppToolbarComponent } from './components/app-toolbar/app-toolbar.compon
     FlexContainerComponent,
     FlexContainerToolsetComponent,
     AppToolbarComponent,
+    FlexOutputComponent,
   ],
   imports: [CoreModule, SharedModule, FlexItemsModule, NgbModule],
   exports: [FlexBoxGeneratorComponent],

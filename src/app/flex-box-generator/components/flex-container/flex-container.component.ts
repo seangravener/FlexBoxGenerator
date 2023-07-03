@@ -13,18 +13,11 @@ import { FlexContainerProps } from './flex-container.interface'
 })
 export class FlexContainerComponent {
   container: FlexContainer | undefined
-  @HostBinding('class') defaultClass =
-    'flex flex-col gap-4 p-4 dark:bg-slate-900 border border-slate-700 rounded-md w-full'
   @HostBinding('style.height.px') height = 624 // @todo move to state
   @Output() containerChanges = new EventEmitter()
 
   flexItems$ = this.flexItemsService.flexItems$
-  flexContainer$: Observable<FlexContainer> = this.flexContainerService.flexContainer$.pipe(
-    takeWhile((container) => Boolean(container)),
-    map((container) => new FlexContainer({ ...container })),
-    tap((container) => (this.container = container)),
-    shareReplay(),
-  )
+  flexContainer$: Observable<FlexContainer> = this.flexContainerService.flexContainer$
 
   constructor(private flexItemsService: FlexItemsService, private flexContainerService: FlexContainerService) {}
 

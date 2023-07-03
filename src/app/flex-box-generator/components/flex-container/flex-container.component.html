@@ -1,5 +1,3 @@
-contain: {{ flexContainer$ | async | json }}
-
 <ng-container *ngIf="flexItems$ | async as flexItems">
   <div *ngIf="flexContainer$ | async as flexContainer" class="container overflow-hidden" [style]="flexContainer.style" height="500px">
     <div *ngFor="let item of flexItems"

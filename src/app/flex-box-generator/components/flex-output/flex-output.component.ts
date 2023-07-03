@@ -12,12 +12,12 @@ import { FlexContainerStyleProps } from '../flex-container/flex-container.interf
 export class FlexOutputComponent {
   flexContainer$ = this.flexContainerService.flexContainer$
   flexContainerStyles$ = this.flexContainer$.pipe(
-    switchMap((container) => of(this.filterStyleKeys(container.style))),
+    switchMap((container) => of(this.filterUnsetStyles(container.style))),
   )
 
   constructor(private flexContainerService: FlexContainerService) {}
 
-  private filterStyleKeys(styleObj: FlexContainerStyleProps | undefined) {
+  private filterUnsetStyles(styleObj: FlexContainerStyleProps | undefined) {
     return Object.fromEntries(
       Object.entries({ ...styleObj }).filter(
         ([key, value]) => value !== 'auto',

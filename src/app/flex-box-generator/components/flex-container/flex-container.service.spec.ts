@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing'
 
-import { FlexContainerService } from './flex-container.service';
+import { FlexContainerService } from './flex-container.service'
 
 describe('FlexContainerService', () => {
-  let service: FlexContainerService;
+  let service: FlexContainerService
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FlexContainerService);
-  });
+    TestBed.configureTestingModule({})
+    service = TestBed.inject(FlexContainerService)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})

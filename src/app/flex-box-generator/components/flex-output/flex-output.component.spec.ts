@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FlexOutputComponent } from './flex-output.component';
+import { FlexOutputComponent } from './flex-output.component'
 
 describe('FlexOutputComponent', () => {
-  let component: FlexOutputComponent;
-  let fixture: ComponentFixture<FlexOutputComponent>;
+  let component: FlexOutputComponent
+  let fixture: ComponentFixture<FlexOutputComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlexOutputComponent ]
-    })
-    .compileComponents();
+      declarations: [FlexOutputComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(FlexOutputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(FlexOutputComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

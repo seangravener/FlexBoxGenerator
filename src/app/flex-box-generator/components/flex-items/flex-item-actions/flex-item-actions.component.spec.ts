@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FlexItemActionsComponent } from './flex-item-actions.component';
+import { FlexItemActionsComponent } from './flex-item-actions.component'
 
 describe('FlexItemActionsComponent', () => {
-  let component: FlexItemActionsComponent;
-  let fixture: ComponentFixture<FlexItemActionsComponent>;
+  let component: FlexItemActionsComponent
+  let fixture: ComponentFixture<FlexItemActionsComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlexItemActionsComponent ]
-    })
-    .compileComponents();
+      declarations: [FlexItemActionsComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(FlexItemActionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(FlexItemActionsComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

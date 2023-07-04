@@ -1,72 +1,72 @@
-import { TestBed } from '@angular/core/testing';
-import { catchError, mergeMap, of, startWith, tap } from 'rxjs';
-import { Slice, StoreProvider } from './store.provider';
-import { TestScheduler } from 'rxjs/testing';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
+import { TestBed } from '@angular/core/testing'
+import { catchError, mergeMap, of, startWith, tap } from 'rxjs'
+import { Slice, StoreProvider } from './store.provider'
+import { TestScheduler } from 'rxjs/testing'
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable'
 
 fdescribe('StoreProvider', () => {
-  let service: StoreProvider;
-  let scheduler: TestScheduler;
+  let service: StoreProvider
+  let scheduler: TestScheduler
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [StoreProvider],
-    });
-    service = TestBed.inject(StoreProvider);
+    })
+    service = TestBed.inject(StoreProvider)
     scheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
-  });
+      expect(actual).toEqual(expected)
+    })
+  })
 
   afterEach(() => {
-    service = {} as StoreProvider;
-  });
+    service = {} as StoreProvider
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    expect(service).toBeTruthy()
+  })
 
   it('#set should set slice(s) of state', () => {
-    const slice1 = { a: [{}] };
-    const slice2 = { z: [{ x: 'y' }] };
+    const slice1 = { a: [{}] }
+    const slice2 = { z: [{ x: 'y' }] }
 
-    service.set('a', [{}]);
-    expect(service.value).toEqual(slice1);
+    service.set('a', [{}])
+    expect(service.value).toEqual(slice1)
 
-    service.set('z', [{ x: 'y' }]);
-    expect(service.value).toEqual({ ...slice1, ...slice2 });
-  });
+    service.set('z', [{ x: 'y' }])
+    expect(service.value).toEqual({ ...slice1, ...slice2 })
+  })
 
   it('#select should return slices of state', () => {
-    const slice = { a: [{}], z: [{ x: 'y' }] };
+    const slice = { a: [{}], z: [{ x: 'y' }] }
 
-    service.set('a', [{}]);
+    service.set('a', [{}])
     service
       .select('a')
       .subscribe((s) => expect(s).toEqual(slice.a))
-      .unsubscribe();
+      .unsubscribe()
 
-    service.set('z', [{ x: 'y' }]);
+    service.set('z', [{ x: 'y' }])
     service
       .select('z')
       .subscribe((s) => expect(s).toEqual(slice.z))
-      .unsubscribe();
-  });
+      .unsubscribe()
+  })
 
   it('#set should update slices of state', () => {
     const testA = (s: Slice<any>) => {
-      service.set('a', [{ b: 'c' }]);
-      expect(service.value).toEqual({ a: [{ b: 'c' }] });
+      service.set('a', [{ b: 'c' }])
+      expect(service.value).toEqual({ a: [{ b: 'c' }] })
 
-      return service.select('a');
-    };
+      return service.select('a')
+    }
 
     const testB = (s: Slice<any>) => {
-      service.set('z', [{ x: 'y' }]);
-      expect(service.value).toEqual({ z: [{ x: 'y' }] });
+      service.set('z', [{ x: 'y' }])
+      expect(service.value).toEqual({ z: [{ x: 'y' }] })
 
-      return service.select('z');
-    };
+      return service.select('z')
+    }
 
     service
       .select('a')
@@ -74,42 +74,42 @@ fdescribe('StoreProvider', () => {
         mergeMap(testA),
         tap((s) => expect(s).toEqual([{ a: { b: 'c' } }])),
         mergeMap(testB),
-        tap((s) => expect(s).toEqual([{ z: { x: 'y' } }]))
+        tap((s) => expect(s).toEqual([{ z: { x: 'y' } }])),
       )
       .subscribe((s) => expect(s).toEqual([{ x: 'y' }]))
-      .unsubscribe();
-  });
+      .unsubscribe()
+  })
 
   it('should support multiple subscriptions', () => {
-    const state = { a: [], z: {} };
-    const a$ = service.select('a');
-    const z$ = service.select('z');
+    const state = { a: [], z: {} }
+    const a$ = service.select('a')
+    const z$ = service.select('z')
 
-    service.set('a', state.a);
-    service.set('z', state.z);
+    service.set('a', state.a)
+    service.set('z', state.z)
 
-    a$.subscribe((s) => expect(s).toEqual(state.a)).unsubscribe();
-    z$.subscribe((s) => expect(s).toEqual(state.z)).unsubscribe();
+    a$.subscribe((s) => expect(s).toEqual(state.a)).unsubscribe()
+    z$.subscribe((s) => expect(s).toEqual(state.z)).unsubscribe()
 
-    service.set('a', state.z);
-    service.set('z', state.z);
-  });
+    service.set('a', state.z)
+    service.set('z', state.z)
+  })
 
   it('should stream changes to all subs', () => {
-    const state = { a: [], b: {} };
-    const a$ = service.select('a');
-    const b$ = service.select('b');
+    const state = { a: [], b: {} }
+    const a$ = service.select('a')
+    const b$ = service.select('b')
 
-    service.set('a', state.a);
-    service.set('b', state.b);
+    service.set('a', state.a)
+    service.set('b', state.b)
     // service.set('c', state.b);
 
     scheduler.run(({ cold, expectObservable }) => {
-      const sources$ = cold('a-b-c|', state);
-      const expectedMarble = 'a-b-c|';
+      const sources$ = cold('a-b-c|', state)
+      const expectedMarble = 'a-b-c|'
 
-      expectObservable(a$).toBe('a', state);
-      expectObservable(b$).toBe('b', state);
-    });
-  });
-});
+      expectObservable(a$).toBe('a', state)
+      expectObservable(b$).toBe('b', state)
+    })
+  })
+})

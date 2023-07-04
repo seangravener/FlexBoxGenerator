@@ -27,7 +27,9 @@
   <div class="">
     <form class="flex flex-col gap-1">
       <label *ngFor="let style of flexContainerStyleOptions | keyvalue" class="flex items-center gap-1">
-        <code><pre>{{ style.key }}: </pre></code>
+        <code>
+          <pre>{{ style.key }}: </pre>
+        </code>
 
         <select class="select select-bordered flex-grow" (change)="onChange($event)" [name]="style.key">
           <option *ngFor="let option of style.value" [value]="option">

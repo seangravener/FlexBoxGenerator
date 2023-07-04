@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FlexItemsService } from '../flex-items.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { FlexItemsService } from '../flex-items.service'
 
 @Component({
   selector: 'flex-item-actions',
@@ -11,14 +11,14 @@ export class FlexItemActionsComponent {
   constructor(private flexItemsService: FlexItemsService) {}
 
   onAddItem() {
-    this.flexItemsService.addItem();
+    this.flexItemsService.addItem()
   }
 
   onDeleteItem() {
-    this.flexItemsService.deleteItem();
+    this.flexItemsService.deleteItem()
   }
 
   onResetItems() {
-    this.flexItemsService.resetItems();
+    this.flexItemsService.resetItems()
   }
 }

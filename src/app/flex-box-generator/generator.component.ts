@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostBinding, HostListener, ViewChild } from '@angular/core'
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  ViewChild,
+} from '@angular/core'
 import { startWith } from 'rxjs'
 import { FlexItem } from './components/flex-items/flex-item.model'
 import { StateService } from './core/services/state.service'
@@ -29,7 +37,10 @@ export class FlexBoxGeneratorComponent implements AfterViewInit {
   //   console.log('Payload:', payload);
   // }
 
-  constructor(private stateService: StateService, private themeService: ThemeService) {}
+  constructor(
+    private stateService: StateService,
+    private themeService: ThemeService,
+  ) {}
 
   flexItems$ = this.stateService.fetchState<FlexItem[]>('flexItems')
   flexContainer$ = this.stateService.fetchState<FlexContainer>('flexContainer')

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core'
 import { StateService } from '../../core/services/state.service'
-import { FlexContainerProps, FlexContainerStyleProps } from './flex-container.interface'
+import {
+  FlexContainerProps,
+  FlexContainerStyleProps,
+} from './flex-container.interface'
 import { map, shareReplay, takeWhile, tap } from 'rxjs'
 import { FlexContainer } from './flex-container.model'
 import { DEFAULT_FLEX_CONTAINER } from './flex-container.constants'
@@ -11,12 +14,14 @@ import { flexContainerStyleOptions } from '../../shared/interfaces/flex-styles.i
 })
 export class FlexContainerService {
   flexContainer: FlexContainerProps = {}
-  flexContainer$ = this.stateService.get<FlexContainerProps>('flexContainer').pipe(
-    takeWhile((container) => Boolean(container)),
-    map((container) => new FlexContainer({ ...container })),
-    tap((flexContainer) => (this.flexContainer = flexContainer)),
-    shareReplay(),
-  )
+  flexContainer$ = this.stateService
+    .get<FlexContainerProps>('flexContainer')
+    .pipe(
+      takeWhile((container) => Boolean(container)),
+      map((container) => new FlexContainer({ ...container })),
+      tap((flexContainer) => (this.flexContainer = flexContainer)),
+      shareReplay(),
+    )
 
   flexContainerStyleOptions = flexContainerStyleOptions
 

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
-import { FlexItemsService } from './flex-items.service';
+import { FlexItemsService } from './flex-items.service'
 
 @Component({
   selector: 'flex-items',
@@ -9,19 +9,19 @@ import { FlexItemsService } from './flex-items.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlexItemsComponent {
-  flexItems$ = this.flexItemsService.flexItems$;
+  flexItems$ = this.flexItemsService.flexItems$
 
   constructor(private flexItemsService: FlexItemsService) {}
 
   onAddItem() {
-    this.flexItemsService.addItem();
+    this.flexItemsService.addItem()
   }
 
   onDeleteItem() {
-    this.flexItemsService.deleteItem();
+    this.flexItemsService.deleteItem()
   }
 
   resetItems() {
-    this.flexItemsService.resetItems();
+    this.flexItemsService.resetItems()
   }
 }

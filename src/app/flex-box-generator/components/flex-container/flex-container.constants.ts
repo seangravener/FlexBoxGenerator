@@ -1,4 +1,4 @@
-import { FlexContainerStyleProps } from "./flex-container.interface";
+import { FlexContainerStyleProps } from './flex-container.interface'
 
 export const CONTAINER = {
   alignContent: 'flex-start',
@@ -6,10 +6,11 @@ export const CONTAINER = {
   flexDirection: 'row',
   flexWrap: 'nowrap',
   justifyContent: 'flex-start',
-};
+  background: 'transparent',
+  height: '300px',
+} as FlexContainerStyleProps
 
 export const DEFAULT_FLEX_CONTAINER = {
-  content: 'hi',
-  style: { display: 'flex', flexWrap: 'wrap', flexDirection: 'row' } as FlexContainerStyleProps,
-};
-
+  content: 'hello-world',
+  style: { ...CONTAINER },
+}

@@ -1,3 +1,4 @@
+// prettier-ignore
 export const flexContainerStyleOptions = {
   display: ['flex', 'inline-flex', 'block', 'inline-block', 'none'] as string[],
   flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'] as string[],
@@ -7,6 +8,8 @@ export const flexContainerStyleOptions = {
   alignContent: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'] as string[],
   alignSelf: ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'] as string[],
   justifyItems: ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'] as string[],
+  background: ['transparent', 'black', 'white'] as string[],
+  height: ['300px', '600px', '900px', '100vh'] as string[],
 } as const
 
 export type FlexDisplay = (typeof flexContainerStyleOptions.display)[number]

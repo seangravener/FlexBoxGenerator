@@ -1,6 +1,6 @@
 <div *ngIf="flexItems$ | async as flexItems else showLoading">
   <ul class="flex flex-col gap-4 my-4" *ngFor="let item of flexItems">
-    <li class="item-option">
+    <li class="border border-slate-500 rounded-md p-4 bg-slate-900 item-option">
       content: {{ item.content }}
 
       <ul>

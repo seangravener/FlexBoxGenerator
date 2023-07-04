@@ -24,7 +24,7 @@ export class FlexItemsService {
   addItem() {
     this.stateService.set('flexItems', [
       ...this.flexItems,
-      new FlexItem({ style: DEFAULT_STYLES, content: this.generateEmoji() }),
+      new FlexItem({ style: DEFAULT_STYLES, content: FlexItemsService.generateEmoji() }),
     ]);
   }
 
@@ -37,7 +37,7 @@ export class FlexItemsService {
     this.flexContainerService.reset();
   }
 
-  generateEmoji() {
+  static generateEmoji() {
     // prettier-ignore
     const possibleEmojis = ['👋','😋','💯','🎱','🎨','👍','💡','🫧','⚡','👊'];
     return possibleEmojis[Math.floor(Math.random() * possibleEmojis.length)];

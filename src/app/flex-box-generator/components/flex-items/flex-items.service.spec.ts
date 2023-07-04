@@ -13,7 +13,7 @@ import { FLEX_ITEMS } from '../../core/fixtures/flex-items'
 import { from, of, tap } from 'rxjs'
 import { StoreProvider } from '../../core/services/store.provider'
 import { FlexItem } from './flex-item.model'
-import { FLEX_ITEM } from './flex-item.constants'
+import { FlexContainerService } from '../flex-container/flex-container.service'
 
 fdescribe('FlexItemsService', () => {
   let flexItemsService: FlexItemsService
@@ -25,7 +25,10 @@ fdescribe('FlexItemsService', () => {
     })
 
     stateService = new StateService(new StoreProvider())
-    flexItemsService = new FlexItemsService(stateService)
+    flexItemsService = new FlexItemsService(
+      stateService,
+      new FlexContainerService(stateService),
+    )
   })
 
   afterEach(fakeAsync(() => {

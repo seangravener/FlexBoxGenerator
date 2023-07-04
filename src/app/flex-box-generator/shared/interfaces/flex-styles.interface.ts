@@ -12,11 +12,15 @@ export const flexContainerStyleOptions = {
   height: ['300px', '600px', '900px', '100vh'] as string[],
 } as const
 
-export type FlexDisplay = (typeof flexContainerStyleOptions.display)[number]
-export type FlexDirection = (typeof flexContainerStyleOptions.flexDirection)[number]
-export type FlexWrap = (typeof flexContainerStyleOptions.flexWrap)[number]
-export type FlexJustifyContent = (typeof flexContainerStyleOptions.justifyContent)[number]
-export type FlexAlignItems = (typeof flexContainerStyleOptions.alignItems)[number]
-export type FlexAlignContent = (typeof flexContainerStyleOptions.alignContent)[number]
-export type FlexAlignSelf = (typeof flexContainerStyleOptions.alignSelf)[number]
-export type FlexJustifyItems = (typeof flexContainerStyleOptions.justifyItems)[number]
+type FlexContainerStyleOptions<
+  T extends keyof typeof flexContainerStyleOptions,
+> = (typeof flexContainerStyleOptions)[T][number]
+
+export type FlexDisplay = FlexContainerStyleOptions<'display'>
+export type FlexDirection = FlexContainerStyleOptions<'flexDirection'>
+export type FlexWrap = FlexContainerStyleOptions<'flexWrap'>
+export type FlexJustifyContent = FlexContainerStyleOptions<'justifyContent'>
+export type FlexAlignItems = FlexContainerStyleOptions<'alignItems'>
+export type FlexAlignContent = FlexContainerStyleOptions<'alignContent'>
+export type FlexAlignSelf = FlexContainerStyleOptions<'alignSelf'>
+export type FlexJustifyItems = FlexContainerStyleOptions<'justifyItems'>

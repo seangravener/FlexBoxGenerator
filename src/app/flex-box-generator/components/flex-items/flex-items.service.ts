@@ -24,10 +24,10 @@ export class FlexItemsService {
   addItem() {
     this.stateService.set('flexItems', [
       ...this.flexItems,
-      new FlexItem({
+      {
         style: DEFAULT_STYLES,
         content: FlexItemsService.generateEmoji(),
-      }),
+      },
     ])
   }
 

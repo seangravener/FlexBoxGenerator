@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { FlexContainerService } from '../../flex-container/flex-container.service'
-import { FlexContainerStyleProps } from '../../flex-container/flex-container.interface'
+import { FlexContainerService } from '../flex-container/flex-container.service'
 
 @Component({
   selector: 'flex-container-toolset',

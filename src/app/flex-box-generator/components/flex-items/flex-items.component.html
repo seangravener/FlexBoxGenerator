@@ -1,13 +1,16 @@
 <div *ngIf="flexItems$ | async as flexItems; else showLoading">
-  <ul class="flex flex-col gap-4 my-4" *ngFor="let item of flexItems">
-    <li class="border border-slate-500 rounded-md p-4 bg-slate-900 item-option">
-      content: {{ item.content }}
+  <form class="flex flex-col gap-1">
+    <div *ngFor="let item of flexItems" class="flex items-center gap-1">
+      <code><pre>{{ item | json }}: </pre></code>
 
-      <ul>
-        <li *ngFor="let style of item.style | keyvalue">{{ style.key }} : {{ style.value }}</li>
-      </ul>
-    </li>
-  </ul>
+      <div class="select select-bordered flex-grow" >
+        <div *ngFor="let option of item.style | keyvalue" >
+          {{ option | json }}
+        </div>
+      </div>
+    </div>
+  </form>
+
 </div>
 
 <ng-template #showLoading> Loading ... </ng-template>

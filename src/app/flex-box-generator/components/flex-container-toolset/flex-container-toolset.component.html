@@ -1,42 +1,15 @@
 <div *ngIf="flexContainer$ | async as flexContainer" class="flex flex-wrap items-center gap-8">
-  <!-- <label class="flex items-center gap-2">
-    <code><pre>Display: flex</pre></code>
-    <input type="checkbox" [checked]="flexContainer.style?.display === 'flex'" class="checkbox checkbox-sm"
-      name="display" (change)="onChange($event)" />
-  </label>
-
-  <label class="flex items-center gap-4">
-    <code><pre>Flex Direction</pre></code>
-    <select class="select select-bordered flex-grow" (change)="onChange($event)" name="flexDirection">
-      <option *ngFor="let option of flexContainerStyleOptions.display" [value]="option"
-        [selected]="option === currentDisplayMode">
-        {{ option }}
-      </option>
-    </select>
-  </label>
-
-  <label class="flex items-center gap-4">
-    <code><pre>Flex Wrap</pre></code>
-    <select class="select select-bordered flex-grow" (change)="onChange($event)" name="flexWrap">
-      <option *ngFor="let option of flexContainerStyleOptions.flexWrap" [value]="option">
-        {{ option }}
-      </option>
-    </select>
-  </label> -->
-
-  <div class="">
-    <form class="flex flex-col gap-1">
-      <label *ngFor="let style of flexContainerStyleOptions | keyvalue" class="flex items-center gap-1">
-        <code>
+  <form class="flex flex-col gap-1">
+    <label *ngFor="let style of flexContainerStyleOptions | keyvalue" class="flex items-center gap-1">
+      <code>
           <pre>{{ style.key }}: </pre>
         </code>
 
-        <select class="select select-bordered flex-grow" (change)="onChange($event)" [name]="style.key">
-          <option *ngFor="let option of style.value" [value]="option">
-            {{ option }}
-          </option>
-        </select>
-      </label>
-    </form>
-  </div>
+      <select class="select select-bordered flex-grow" (change)="onChange($event)" [name]="style.key">
+        <option *ngFor="let option of style.value" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </label>
+  </form>
 </div>

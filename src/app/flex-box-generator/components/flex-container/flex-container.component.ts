@@ -24,8 +24,8 @@ export class FlexContainerComponent {
     this.flexContainerService.flexContainer$
 
   constructor(
-    private flexItemsService: FlexItemsService,
-    private flexContainerService: FlexContainerService,
+    private readonly flexItemsService: FlexItemsService,
+    private readonly flexContainerService: FlexContainerService,
   ) {}
 
   onContainerChange(flexItems: any[]) {
